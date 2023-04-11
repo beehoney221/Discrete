@@ -9,7 +9,7 @@ namespace ConsoleApplication38
 {
     class Program
     {
-        static void Main()
+        static void Main(
         {
             int n;
             Console.WriteLine("Введите количество вершин.");
