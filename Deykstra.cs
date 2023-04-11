@@ -45,7 +45,7 @@ namespace ConsoleApplication38
             {
                 for (int j = 0; j <= n; j++)
                 {
-                    if ((nach[i, j] == 9999) & (i != j))
+                    if (nach[i, j] == 9999)
                     {
                         Console.Write("inf\t");
                     }
