@@ -1,0 +1,117 @@
+graf = []
+graf1 = []
+with open("TEST1.txt") as f:
+        while True:
+                line = [int(x) for x in f.readline().split()]
+                if line == []:
+                    break
+                graf.append(line)
+with open("TEST1.txt") as f:
+    while True:
+        line = [int(x) for x in f.readline().split()]
+        if line == []:
+            break
+        graf1.append(line)
+
+origin = 1
+dring = 6
+graf = sorted(graf)
+print(graf)
+curpath = []
+i = ' '
+cnt = 0
+origin_list =[]
+dring_list =[]
+dring1_list =[]
+for i in graf:
+    if i[0]==origin:
+        origin_list.append(i)
+for i in graf1:
+    if i[1]==dring:
+        dring1_list.append(i)
+for i in graf:
+    if i[1]==dring:
+        dring_list.append(i)
+
+def found_arc(origin_list):
+    while origin_list!=[]:
+        for i in origin_list:
+            if i[2]!=0:
+                return i
+                # if origin_list==[]:
+                #     return [0,8,0]
+            else:
+                origin_list.remove(i)
+
+def ugraf(graf):
+    for i in graf:
+        if i[2]==0:
+            graf.remove(i)
+    return graf
+
+def found(arc, garf, set_ver):
+    list_arc = []
+    for i in graf:
+        if i[0]==arc[1] and i[2]!=0:
+            list_arc.append(i)
+    return list_arc
+
+def max_arc(arc, garf, set_ver):
+    max_flow_v = 0
+    v = []
+    list_arc = found(arc, garf, set_ver)
+    for v1 in list_arc:
+        if v1[2] > max_flow_v and v1[2]>0:
+            v = v1
+            max_flow_v = v[2]
+    return v
+
+def min_flow(curpath):
+    minfl = 10**10
+    for i in curpath:
+        if i[2] < minfl and i[2]!=0:
+            minfl = i[2]
+            # print(i)
+    return minfl
+
+def update_garf(curpath, graf):
+    minnn = min_flow(curpath)
+    for i in graf:
+        if i in curpath:
+            graf[graf.index(i)][2] -= minnn
+    return graf
+
+def update_ok(origin_list):
+    if origin_list == []:
+        return False
+    return True
+
+
+x = 0
+cur_arc = graf[0]
+ok = True
+
+
+while ok:
+    cur_arc = found_arc(origin_list)
+    set_ver = set()
+    curpath = []
+    curpath.append(cur_arc)
+    if cur_arc == None:
+        break
+    while cur_arc[2] != dring:
+        if max_arc(cur_arc, graf, set_ver) == []:
+            break
+        cur_arc = max_arc(cur_arc, graf, set_ver)
+        set_ver.add(cur_arc[0])
+        curpath.append(cur_arc)
+
+    if curpath == []:
+        break
+    graf = update_garf(curpath, graf)
+    ok = update_ok(origin_list)
+
+for i in range(len(dring_list)):
+    cnt+=dring1_list[i][2]-dring_list[i][2]
+
+print("Маскимальный поток", cnt)
