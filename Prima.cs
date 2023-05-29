@@ -70,7 +70,6 @@ namespace ConsoleApplication38
             used.Add(i_v);
             while (used.Count < 7)
             {
-                Console.WriteLine(i_v);
                 List<int> ves = new List<int>(); // веса рассматриваемых ребер
                 List<string> rebra = new List<string>();
                 foreach (var para in r_w)
