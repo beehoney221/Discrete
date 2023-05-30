@@ -68,7 +68,7 @@ namespace ConsoleApplication38
             Random x = new Random();
             int i_v = x.Next(1, n+1);
             used.Add(i_v);
-            while (used.Count < 7)
+            while (used.Count < n)
             {
                 List<int> ves = new List<int>(); // веса рассматриваемых ребер
                 List<string> rebra = new List<string>();
