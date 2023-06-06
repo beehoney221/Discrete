@@ -34,13 +34,10 @@ namespace Dis
             while (true)
             {
                 int i;
-                string reb = "";
-                string k = Console.ReadLine();
-                reb = k + " ";
-                if (Convert.ToInt32(k) <= n) i = Convert.ToInt32(k);
+                int k = Convert.ToInt32(Console.ReadLine());
+                if (k <= n) i = k;
                 else break;
                 int j = Convert.ToInt32(Console.ReadLine());
-                reb += Convert.ToString(j);
                 int zn = Convert.ToInt32(Console.ReadLine());
                 nach[i, j] = zn;
                 nach[j, i] = zn;
