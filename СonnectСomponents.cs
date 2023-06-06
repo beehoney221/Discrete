@@ -12,7 +12,7 @@ namespace Dis
     {
         static void Main()
         {
-            int n; ;
+            int n;
             Console.WriteLine("Введите количество вершин.");
             n = Convert.ToInt32(Console.ReadLine());
             int[,] nach = new int[n + 1, n + 1];
